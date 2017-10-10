@@ -1,7 +1,10 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-       <h4>MY FIRST FORM</h4  >
+       <h5>MY FIRST FORM</h5>
+       	<% if user_signed_in? %>
+       		<%= link_to "Sign Out" , destroy_user_session_path, method: :delete %>
+       	<% end %>
     </div>
   </div>
 </nav>

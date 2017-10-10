@@ -13,19 +13,20 @@
       </ul>
     </div>
   <% end %>
- 
-  <p>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
-  </p>
- 
-  <p>
+
+  <div class="row">
+    <div class="form-group col-md-4">
+      <%= form.label :title %><br>
+      <%= form.text_field :title, class: "form-control" %>
+    </div>
+  </div>
+  <div class="row">
+  <div class="form-group col-md-4">
     <%= form.label :text %><br>
-    <%= form.text_area :text %>
-  </p>
- 
-  <p>
-    <%= form.submit %>
-  </p>
- 
+    <%= form.text_area :text, class: "form-control" %>
+  </div>
+  </div>
+  <div class="actions">
+    <%= form.submit 'Create', class: "btn btn-primary" %>
+  </div>
 <% end %>

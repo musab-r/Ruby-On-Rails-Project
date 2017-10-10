@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
-	
-http_basic_authenticate_with name: "dhh" , password: "secret",
-except: [:index, :show]
+load_and_authorize_resource
+
+# before_action :authenticate_user!, except: [:index, :show]
 def index
     @articles = Article.all
   end
@@ -21,9 +21,9 @@ def index
 
 	def create
 		@article = Article.new(article_params)
-	 
+		@article.user = current_user
 	 	if @article.save
-	  		redirect_to @article
+	  		redirect_to @article, notice: 'Article created successfully.'
 	  	else
 	  		render 'new'
 	  	end
@@ -33,7 +33,7 @@ def index
   		@article = Article.find(params[:id])
  
  	 	if @article.update(article_params)
-    		redirect_to @article
+    		redirect_to @article,  notice: 'Article updated successfully.'
   		else
     		render 'edit'
     	end
@@ -44,7 +44,7 @@ def index
     	@article = Article.find(params[:id])
     	@article.destroy
 
-    	redirect_to articles_path
+    	redirect_to articles_path,  notice: 'Article deleted successfully.'
     end
   
 	private
