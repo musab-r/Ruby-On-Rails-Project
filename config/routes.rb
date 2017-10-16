@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :views
   devise_for :users
   get 'welcome/index'
+ # get "/users/sign_up", to: "devise/registrations#new"
   
   resources :articles do
   	resources :comments
