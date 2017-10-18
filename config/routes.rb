@@ -1,13 +1,18 @@
 Rails.application.routes.draw do
-  devise_for :views
-  devise_for :users
-  get 'welcome/index'
- # get "/users/sign_up", to: "devise/registrations#new"
-  
-  resources :articles do
-  	resources :comments
-  end
+	namespace  :api, defaults:{ format: :json } do
+		namespace :v1 do
 
-  root 'welcome#index'
+			devise_for :views
+			devise_for :users
+
+			get 'welcome/index'
+			
+			resources :articles do
+				resources :comments
+			end
+
+		root 'welcome#index'
+		end
+	end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
